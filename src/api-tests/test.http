@@ -1,0 +1,25 @@
+@uri = http://localhost:3000
+
+get {{uri}}/test
+
+###
+
+get {{uri}}
+
+###
+
+post {{uri}}/post
+Content-Type: "application/json"
+
+{
+    "title": "Test Post",
+    "content": "This is a test post."
+}
+
+###
+
+put {{uri}}
+
+###
+
+delete {{uri}}
