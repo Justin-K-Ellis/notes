@@ -53,12 +53,23 @@ router.put("/note", async (req, res) => {
       where: { id },
       data: { title, content },
     });
-    res.status(200).send(updatedNote);
+    res.status(201).send(updatedNote);
   } catch (error) {
     res.status(500).send(error.message);
   }
 });
 
 // Delete
+router.delete("/note/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const deletedNote = await prisma.note.delete({
+      where: { id },
+    });
+    res.status(200).send(deletedNote);
+  } catch (error) {
+    res.status(500).send("Prisma error: " + error.message);
+  }
+});
 
 export default router;
