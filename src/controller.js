@@ -29,6 +29,21 @@ router.get("/note", async (req, res) => {
 });
 
 // == Note by ID ==
+router.get("/note/:id", async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const note = await prisma.note.findUnique({
+      where: { id: id },
+    });
+    res.status(200).send(note);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+router.get("*", (req, res) => {
+  res.status(404).send("This resource does not exist.");
+});
 
 // Update
 
