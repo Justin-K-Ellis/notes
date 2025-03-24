@@ -46,6 +46,18 @@ router.get("*", (req, res) => {
 });
 
 // Update
+router.put("/note", async (req, res) => {
+  try {
+    const { id, title, content } = req.body;
+    const updatedNote = await prisma.note.update({
+      where: { id },
+      data: { title, content },
+    });
+    res.status(200).send(updatedNote);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 // Delete
 
