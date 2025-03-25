@@ -33,6 +33,7 @@ router.get("/titles", async (req, res) => {
   try {
     const titles = await prisma.note.findMany({
       select: {
+        id: true,
         title: true,
       },
     });
